@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class primatyButton extends StatelessWidget {
@@ -22,16 +23,17 @@ class primatyButton extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
         ),
         child: Container(
-          constraints: const BoxConstraints(
-              minWidth: 57.0,
-              minHeight: 57.0), // min sizes for Material buttons
+          constraints: BoxConstraints(
+            minWidth: 50.0.w,
+            minHeight: 40.0.h,
+          ), // min sizes for Material buttons
           alignment: Alignment.center,
           child: Text(
             btnText,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 13.sp,
             ),
             textAlign: TextAlign.center,
           ),

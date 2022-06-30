@@ -1,9 +1,9 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/screens/forgotPassword.dart';
-import 'package:food_app/screens/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/screens/signup.dart';
+import 'package:food_app/screens/profileImage.dart';
+import 'package:food_app/screens/resetPassword.dart';
+import 'package:food_app/screens/setBio.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const forgotPassword(),
+        home: profileImage(),
       ),
     );
   }

@@ -42,3 +42,13 @@ class primatyButton extends StatelessWidget {
     );
   }
 }
+
+  // RaisedButton(
+  //   onPressed: () {
+  //     if (_formKey.currentState!.validate()) {}
+  //   },
+  //   shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(15.0)),
+  //   padding: const EdgeInsets.all(0.0),
+  //   child: primatyButton(btnText: 'Create Account'),
+  // ),

@@ -3,6 +3,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/screens/forgotPassword.dart';
 import 'package:food_app/screens/signup.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -71,6 +72,7 @@ class _loginState extends State<login> {
                                 )
                               ]),
                               child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Cant\'t be empty';
@@ -79,6 +81,7 @@ class _loginState extends State<login> {
                                       false) {
                                     return 'Invalid Email Address';
                                   }
+                                  return null;
                                 },
                                 controller: _emailControllar,
                                 decoration: InputDecoration(
@@ -174,6 +177,14 @@ class _loginState extends State<login> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => forgotPassword(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Forgot your Password?',
                               style: TextStyle(
@@ -198,7 +209,6 @@ class _loginState extends State<login> {
                       child: primatyButton(btnText: 'Login'),
                     ),
                     SizedBox(height: 15.h),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

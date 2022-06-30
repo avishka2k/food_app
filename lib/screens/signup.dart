@@ -72,6 +72,7 @@ class _signupState extends State<signup> {
                                 )
                               ]),
                               child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Cant\'t be empty';
@@ -80,6 +81,7 @@ class _signupState extends State<signup> {
                                       false) {
                                     return 'Invalid Email Address';
                                   }
+                                  return null;
                                 },
                                 controller: _emailControllar,
                                 decoration: InputDecoration(

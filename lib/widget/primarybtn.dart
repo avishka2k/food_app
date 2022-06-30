@@ -11,7 +11,7 @@ class primatyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 157,
+      width: 190.w,
       child: Ink(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -25,7 +25,7 @@ class primatyButton extends StatelessWidget {
         child: Container(
           constraints: BoxConstraints(
             minWidth: 50.0.w,
-            minHeight: 40.0.h,
+            minHeight: 50.0.h,
           ), // min sizes for Material buttons
           alignment: Alignment.center,
           child: Text(
@@ -33,7 +33,7 @@ class primatyButton extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 13.sp,
+              fontSize: 17.sp,
             ),
             textAlign: TextAlign.center,
           ),

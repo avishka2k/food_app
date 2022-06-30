@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/widget/primarybtn.dart';
 
 class onbordingTow extends StatelessWidget {
@@ -12,7 +13,7 @@ class onbordingTow extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 50),
+            SizedBox(height: 30.h),
             const Expanded(
               flex: 3,
               child: Image(
@@ -24,20 +25,22 @@ class onbordingTow extends StatelessWidget {
               flex: 2,
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'Food Ninja is Where Your \nComfort Food Lives',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
                   ),
 
-                  const SizedBox(height: 20),
-                  const Text(
+                  SizedBox(height: 20.h),
+                  Text(
                     'Enjoy a fast and smooth food delivery'
                     ' at \nyour doorstep',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                    style:
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400),
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: 30.h),
                   // ignore: deprecated_member_use
                   RaisedButton(
                       onPressed: () {},

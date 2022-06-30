@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/screens/onbording2.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,7 +13,7 @@ class onbordingOne extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 50),
+            SizedBox(height: 30.h),
             const Expanded(
               flex: 3,
               child: Image(
@@ -24,20 +25,22 @@ class onbordingOne extends StatelessWidget {
               flex: 2,
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'Find Your Comfort\n Food here',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
                   ),
 
-                  const SizedBox(height: 20),
-                  const Text(
+                  SizedBox(height: 20.h),
+                  Text(
                     'Here You Can find a chef of dish '
                     'for every\n taste and color. Enjoy!',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                    style:
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400),
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: 30.h),
                   // ignore: deprecated_member_use
                   RaisedButton(
                       onPressed: () {

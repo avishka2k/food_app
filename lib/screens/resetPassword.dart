@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

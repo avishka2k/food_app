@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/screens/onbording2.dart';
 import 'package:food_app/widget/primarybtn.dart';
-import 'package:hexcolor/hexcolor.dart';
 
+// ignore: camel_case_types
 class onbordingOne extends StatelessWidget {
   const onbordingOne({Key? key}) : super(key: key);
 
@@ -47,7 +47,7 @@ class onbordingOne extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => onbordingTow(),
+                              builder: (context) => const onbordingTow(),
                             ));
                       },
                       shape: RoundedRectangleBorder(

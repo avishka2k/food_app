@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +81,7 @@ class _setBioState extends State<setBio> {
                       ),
                     ),
                     Text(
-                      'This data will be displayed in your account\nprofile for account',
+                      'This data will be displayed in your account\nprofile for security',
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,

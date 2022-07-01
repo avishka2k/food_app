@@ -1,9 +1,8 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names
 import 'dart:math';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/screens/login.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -101,6 +100,7 @@ class forgotPassword extends StatelessWidget {
                                 false) {
                               return 'Invalid Email Address';
                             }
+                            return null;
                           },
                           controller: _emailControllar,
                           decoration: InputDecoration(

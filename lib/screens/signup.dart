@@ -133,6 +133,7 @@ class _signupState extends State<signup> {
                                   if (value!.length <= 5) {
                                     return 'Minimum 5 characters';
                                   }
+                                  return null;
                                 },
                                 controller: _passwordControllar,
                                 obscureText: true,

@@ -1,15 +1,20 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, use_build_context_synchronously, avoid_print
 
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/screens/forgotPassword.dart';
-import 'package:food_app/screens/signup.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
+  final VoidCallback showRegisterPage;
+  const login({
+    Key? key,
+    required this.showRegisterPage,
+  }) : super(key: key);
 
   @override
   State<login> createState() => _loginState();
@@ -19,6 +24,40 @@ class _loginState extends State<login> {
   final _formKey = GlobalKey<FormState>();
   final _emailControllar = TextEditingController();
   final _passwordControllar = TextEditingController();
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailControllar.text.trim(),
+        password: _passwordControllar.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+        msg: "Invalid user name or pasword",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      print(e.toString());
+    }
+    Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    _emailControllar.dispose();
+    _passwordControllar.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +241,9 @@ class _loginState extends State<login> {
                     // ignore: deprecated_member_use
                     RaisedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          signIn();
+                        }
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0)),
@@ -221,14 +262,7 @@ class _loginState extends State<login> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const signup()),
-                                (route) => false);
-                          },
+                          onTap: widget.showRegisterPage,
                           child: Text(
                             'Sign Up',
                             style: TextStyle(

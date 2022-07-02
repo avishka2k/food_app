@@ -1,14 +1,19 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, avoid_print, use_build_context_synchronously
 
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/screens/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class signup extends StatefulWidget {
-  const signup({Key? key}) : super(key: key);
+  final VoidCallback showLoginPage;
+  const signup({
+    Key? key,
+    required this.showLoginPage,
+  }) : super(key: key);
 
   @override
   State<signup> createState() => _signupState();
@@ -19,6 +24,41 @@ class _signupState extends State<signup> {
   final _emailControllar = TextEditingController();
   final _passwordControllar = TextEditingController();
   final _confirmPasswordControllar = TextEditingController();
+
+  Future signUpAuth() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailControllar.text.trim(),
+        password: _passwordControllar.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+        msg: "Sorry, email address elready exists.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      print(e.toString());
+    }
+    Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    _emailControllar.dispose();
+    _passwordControllar.dispose();
+    _confirmPasswordControllar.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +275,9 @@ class _signupState extends State<signup> {
                     // ignore: deprecated_member_use
                     RaisedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          signUpAuth();
+                        }
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0)),
@@ -244,15 +286,7 @@ class _signupState extends State<signup> {
                     ),
                     SizedBox(height: 20.h),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => const login(),
-                          ),
-                          (route) => false,
-                        );
-                      },
+                      onTap: widget.showLoginPage,
                       child: Text(
                         'Alredy have an account?',
                         style: TextStyle(

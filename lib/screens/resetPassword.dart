@@ -23,7 +23,7 @@ class _resetPasswordState extends State<resetPassword> {
       body: Stack(
         children: [
           Transform.translate(
-            offset: const Offset(-0, -180),
+            offset: const Offset(100, -200),
             child: Transform.rotate(
               angle: pi / 5,
               child: Container(
@@ -209,7 +209,7 @@ class _resetPasswordState extends State<resetPassword> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         padding: const EdgeInsets.all(0.0),
-                        child: primatyButton(btnText: 'Create Account'),
+                        child: primatyButton(btnText: 'Reset Password'),
                       ),
                     ),
                   ],

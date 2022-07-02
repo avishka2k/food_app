@@ -13,7 +13,7 @@ class profileReady extends StatelessWidget {
       body: Stack(
         children: [
           Transform.translate(
-            offset: const Offset(-0, -180),
+            offset: const Offset(100, -200),
             child: Transform.rotate(
               angle: pi / 5,
               child: Container(

@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/screens/login.dart';
 import 'package:food_app/widget/primarybtn.dart';
 
 class onbordingTow extends StatelessWidget {
   const onbordingTow({Key? key}) : super(key: key);
+
+  get toggleScreens => null;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +46,21 @@ class onbordingTow extends StatelessWidget {
                   SizedBox(height: 30.h),
                   // ignore: deprecated_member_use
                   RaisedButton(
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      padding: const EdgeInsets.all(0.0),
-                      child: primatyButton(btnText: 'Next'))
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         login(showRegisterPage: toggleScreens),
+                      //   ),
+                      // );
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    padding: const EdgeInsets.all(0.0),
+                    child: primatyButton(btnText: 'Next'),
+                  )
                 ],
               ),
             ),

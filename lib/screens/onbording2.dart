@@ -2,13 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/screens/login.dart';
 import 'package:food_app/widget/primarybtn.dart';
 
 class onbordingTow extends StatelessWidget {
   const onbordingTow({Key? key}) : super(key: key);
-
-  get toggleScreens => null;
 
   @override
   Widget build(BuildContext context) {

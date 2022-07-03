@@ -19,55 +19,34 @@ class forgotPassword extends StatefulWidget {
 
 class _forgotPasswordState extends State<forgotPassword> {
   final _emailControllar = TextEditingController();
-  final _veifyControllar = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   EmailAuth emailAuth = EmailAuth(sessionName: "Sample session");
-
-  Future veri() async {
-    try {
-      await FirebaseAuth.instance
-          .verifyPasswordResetCode(_emailControllar.text);
-    } on FirebaseAuthException catch (e2) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(e2.toString()),
-          );
-        },
-      );
-    }
-  }
 
   @override
   void initState() {
     super.initState();
     // Initialize the package
     emailAuth;
-    emailAuth.config(remoteServerConfig);
+    emailAuth.config(remoteServerConfiguration);
   }
-
-  bool submitValid = false;
 
   void sendOtp() async {
     var result = await emailAuth.sendOtp(
       recipientMail: _emailControllar.text,
+      otpLength: 4,
     );
     if (result) {
-      print('OTP Send');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => verification(
+            getCode: _emailControllar.text,
+          ),
+        ),
+      );
     } else {
       print('Not Sent');
-    }
-  }
-
-  void verifyOtp() {
-    var result = emailAuth.validateOtp(
-      recipientMail: _emailControllar.text,
-      userOtp: _veifyControllar.text,
-    );
-    if (result) {
-      print('verifyed');
     }
   }
 
@@ -75,44 +54,6 @@ class _forgotPasswordState extends State<forgotPassword> {
   void dispose() {
     _emailControllar.dispose();
     super.dispose();
-  }
-
-  bool isError = false;
-
-  Future passwordReset() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailControllar.text.trim());
-    } on FirebaseAuthException catch (e) {
-      print(e.toString());
-      Navigator.pop(context);
-      setState(() {
-        isError = true;
-      });
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(e.toString()),
-          );
-        },
-      );
-    }
-    if (!isError) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => verification(),
-        ),
-      );
-    }
   }
 
   @override
@@ -255,9 +196,6 @@ class _forgotPasswordState extends State<forgotPassword> {
                           padding: const EdgeInsets.all(0.0),
                           child: primatyButton(btnText: 'Send OTP'),
                         ),
-                        TextField(
-                          controller: _veifyControllar,
-                        )
                       ],
                     ),
                   )

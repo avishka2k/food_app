@@ -1,7 +1,11 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names, use_build_context_synchronously
+import 'dart:ffi';
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_app/screens/onbording1.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -16,6 +20,35 @@ class _resetPasswordState extends State<resetPassword> {
   final _newPasswordControllar = TextEditingController();
   final _confirmNewPasswordControllar = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  final user = FirebaseAuth.instance.currentUser;
+  var newPassword = '';
+
+  resetPassword() async {
+    try {
+      await user!.updatePassword(newPassword);
+      FirebaseAuth.instance.signOut();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const onbordingOne(),
+        ),
+      );
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: e.toString(),
+        backgroundColor: Colors.black.withOpacity(0.6),
+      );
+
+      print(e.toString());
+    }
+  }
+
+  @override
+  void dispose() {
+    _newPasswordControllar.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +237,12 @@ class _resetPasswordState extends State<resetPassword> {
                       // ignore: deprecated_member_use
                       child: RaisedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              newPassword = _newPasswordControllar.text;
+                            });
+                            resetPassword();
+                          }
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),

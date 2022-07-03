@@ -49,23 +49,23 @@ class _profileImageState extends State<profileImage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: HexColor('#F9A84D').withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: IconButton(
-                          icon: Image.asset(
-                            'assets/icons/back.png',
-                            color: HexColor('#DA6317'),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
+                      // Container(
+                      //   width: 40,
+                      //   height: 40,
+                      //   decoration: BoxDecoration(
+                      //     color: HexColor('#F9A84D').withOpacity(0.2),
+                      //     borderRadius: BorderRadius.circular(10),
+                      //   ),
+                      //   child: IconButton(
+                      //     icon: Image.asset(
+                      //       'assets/icons/back.png',
+                      //       color: HexColor('#DA6317'),
+                      //     ),
+                      //     onPressed: () {
+                      //       Navigator.pop(context);
+                      //     },
+                      //   ),
+                      // ),
                     ],
                   ),
                   Padding(

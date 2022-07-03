@@ -5,6 +5,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/auth.config.dart';
 import 'package:food_app/screens/verification.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -22,11 +23,6 @@ class _forgotPasswordState extends State<forgotPassword> {
   final _formKey = GlobalKey<FormState>();
 
   EmailAuth emailAuth = EmailAuth(sessionName: "Sample session");
-
-  var remoteServerConfig = {
-    "server": "food-app-dc30a.firebaseapp.com",
-    "serverKey": ""
-  };
 
   Future veri() async {
     try {

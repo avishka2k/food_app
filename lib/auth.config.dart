@@ -1,4 +1,4 @@
 var remoteServerConfig = {
-  "server": "https://myfoodapplications.herokuapp.com",
-  "serverKey": "1HiKlx"
+  "server": "https://email-auth-for-foodapp.herokuapp.com",
+  "serverKey": "twYEYI"
 };

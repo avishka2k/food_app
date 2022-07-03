@@ -1,4 +1,4 @@
 var remoteServerConfig = {
-  "server": "https://mail-abot.herokuapp.com",
-  "serverKey": "jrF6t1"
+  "server": "https://myfoodapplications.herokuapp.com",
+  "serverKey": "1HiKlx"
 };

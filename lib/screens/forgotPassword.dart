@@ -247,7 +247,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                         RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              veri();
+                              sendOtp();
                             }
                           },
                           shape: RoundedRectangleBorder(

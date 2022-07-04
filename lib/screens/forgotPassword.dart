@@ -1,12 +1,10 @@
 // ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names, use_build_context_synchronously, avoid_print
 import 'dart:math';
-import 'package:email_auth/email_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/auth.config.dart';
-import 'package:food_app/screens/verification.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -21,32 +19,13 @@ class _forgotPasswordState extends State<forgotPassword> {
   final _emailControllar = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  EmailAuth emailAuth = EmailAuth(sessionName: "Sample session");
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the package
-    emailAuth;
-    emailAuth.config(remoteServerConfiguration);
-  }
-
-  void sendOtp() async {
-    var result = await emailAuth.sendOtp(
-      recipientMail: _emailControllar.text,
-      otpLength: 4,
-    );
-    if (result) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => verification(
-            getCode: _emailControllar.text,
-          ),
-        ),
+  Future resetpw() async {
+    try {
+      FirebaseAuth.instance.sendPasswordResetEmail(
+        email: _emailControllar.text,
       );
-    } else {
-      print('Not Sent');
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -188,7 +167,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                         RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              sendOtp();
+                              resetpw();
                             }
                           },
                           shape: RoundedRectangleBorder(

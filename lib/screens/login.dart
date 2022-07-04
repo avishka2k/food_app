@@ -5,16 +5,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_app/screens/emialVerify/sendemail.dart';
 import 'package:food_app/screens/forgotPassword.dart';
+import 'package:food_app/screens/signup.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class login extends StatefulWidget {
-  final VoidCallback showRegisterPage;
-  const login({
-    Key? key,
-    required this.showRegisterPage,
-  }) : super(key: key);
+  // final VoidCallback showRegisterPage;
+  // const login({
+  //   Key? key,
+  //   required this.showRegisterPage,
+  // }) : super(key: key);
 
   @override
   State<login> createState() => _loginState();
@@ -262,7 +264,14 @@ class _loginState extends State<login> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: widget.showRegisterPage,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const sendMail(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Sign Up',
                             style: TextStyle(

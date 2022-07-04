@@ -1,30 +1,58 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, file_names, use_build_context_synchronously, avoid_print
 import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:food_app/screens/logedScreens/homePage.dart';
-import 'package:food_app/screens/setLocation.dart';
-import 'package:food_app/screens/users/userModel.dart';
+import 'package:food_app/screens/setBio.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class setBio extends StatefulWidget {
-  String getpwFormSetPw;
-  String geteFormSete;
-  setBio({required this.getpwFormSetPw, required this.geteFormSete});
+class addPassword extends StatefulWidget {
+  String getEmail;
+  addPassword({required this.getEmail});
 
   @override
-  State<setBio> createState() => _setBioState();
+  State<addPassword> createState() => _addPasswordState();
 }
 
-class _setBioState extends State<setBio> {
-  final _firstName = TextEditingController();
-  final _secondName = TextEditingController();
+class _addPasswordState extends State<addPassword> {
+  final _passwordControllar = TextEditingController();
+  final _confirmPasswordControllar = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  // Future siginUp() async {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => const Center(
+  //       child: CircularProgressIndicator(),
+  //     ),
+  //   );
+  //   try {
+  //     FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //       email: widget.getEmail.trim(),
+  //       password: _passwordControllar.text.trim(),
+  //     );
+
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //       return setBio();
+  //     }));
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e.toString());
+  //     Fluttertoast.showToast(
+  //       msg: 'not success',
+  //       backgroundColor: Colors.black.withOpacity(0.6),
+  //     );
+  //   }
+  //   Navigator.pop(context);
+  // }
+
+  // @override
+  // void dispose() {
+  //   _passwordControllar.dispose();
+  //   widget.getEmail;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +60,7 @@ class _setBioState extends State<setBio> {
       body: Stack(
         children: [
           Transform.translate(
-            offset: const Offset(-0, -180),
+            offset: const Offset(100, -200),
             child: Transform.rotate(
               angle: pi / 5,
               child: Container(
@@ -50,7 +78,7 @@ class _setBioState extends State<setBio> {
               key: _formKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: 50.h,
+                  vertical: 30.h,
                   horizontal: 25.w,
                 ),
                 child: Column(
@@ -81,7 +109,7 @@ class _setBioState extends State<setBio> {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.h),
                       child: Text(
-                        'Fill in your bio to\nget started',
+                        'Set Your Password',
                         style: TextStyle(
                           fontSize: 25.sp,
                           fontWeight: FontWeight.bold,
@@ -90,32 +118,35 @@ class _setBioState extends State<setBio> {
                       ),
                     ),
                     Text(
-                      'This data will be displayed in your account\nprofile for security',
+                      'Set the password for your account,\nso you '
+                      'can login and access all the feature.',
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 30.h),
+                    SizedBox(height: 50.h),
                     Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                          blurRadius: 100,
-                          offset: const Offset(0, 20),
-                          color: HexColor('#15BE77').withOpacity(0.1),
-                        )
-                      ]),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 100,
+                            offset: const Offset(0, 20),
+                            color: HexColor('#15BE77').withOpacity(0.1),
+                          )
+                        ],
+                      ),
                       child: TextFormField(
                         cursorColor: HexColor('#15BE77'),
-                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Request';
+                          if (value!.length <= 5) {
+                            return 'Minimum 5 characters';
                           }
                           return null;
                         },
-                        controller: _firstName,
+                        controller: _passwordControllar,
+                        obscureText: true,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -125,8 +156,8 @@ class _setBioState extends State<setBio> {
                                 color: Colors.grey.withOpacity(0.5),
                               ),
                               borderRadius: BorderRadius.circular(15)),
-                          hintText: 'First Name',
-                          labelText: 'First Name',
+                          hintText: '',
+                          labelText: 'New Password',
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -151,23 +182,27 @@ class _setBioState extends State<setBio> {
                     ),
                     SizedBox(height: 15.h),
                     Container(
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                          blurRadius: 100,
-                          offset: const Offset(0, 20),
-                          color: HexColor('#15BE77').withOpacity(0.1),
-                        )
-                      ]),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 100,
+                            offset: const Offset(0, 20),
+                            color: HexColor('#15BE77').withOpacity(0.1),
+                          )
+                        ],
+                      ),
                       child: TextFormField(
                         cursorColor: HexColor('#15BE77'),
-                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Request';
+                          if (value!.length <= 5) {
+                            return 'Minimum 5 characters';
+                          } else if (value != _passwordControllar.text) {
+                            return 'Password not match';
                           }
                           return null;
                         },
-                        controller: _secondName,
+                        controller: _confirmPasswordControllar,
+                        obscureText: true,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -177,8 +212,8 @@ class _setBioState extends State<setBio> {
                                 color: Colors.grey.withOpacity(0.5),
                               ),
                               borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Last Name',
-                          labelText: 'Last Name',
+                          hintText: '',
+                          labelText: 'Confirm Password',
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -208,13 +243,14 @@ class _setBioState extends State<setBio> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             Navigator.push(
-                                (context),
-                                MaterialPageRoute(
-                                    builder: (context) => setLocation(
-                                        email: widget.geteFormSete,
-                                        fname: _firstName.text,
-                                        lname: _secondName.text,
-                                        password: widget.getpwFormSetPw)));
+                              (context),
+                              MaterialPageRoute(
+                                builder: (context) => setBio(
+                                  getpwFormSetPw: _passwordControllar.text,
+                                  geteFormSete: widget.getEmail,
+                                ),
+                              ),
+                            );
                           }
                         },
                         shape: RoundedRectangleBorder(

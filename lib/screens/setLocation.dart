@@ -4,6 +4,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/screens/profileImage.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -12,6 +13,15 @@ bool countrySelected = false;
 String countryFlag = '';
 
 class setLocation extends StatefulWidget {
+  String password;
+  String email;
+  String fname;
+  String lname;
+  setLocation(
+      {required this.email,
+      required this.fname,
+      required this.lname,
+      required this.password});
   @override
   State<setLocation> createState() => _setLocationState();
 }
@@ -20,23 +30,6 @@ class _setLocationState extends State<setLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 30.h),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: Center(
-            // ignore: deprecated_member_use
-            child: RaisedButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0)),
-              padding: const EdgeInsets.all(0.0),
-              child: primatyButton(btnText: 'Next'),
-            ),
-          ),
-        ),
-      ),
       body: Stack(
         children: [
           Transform.translate(
@@ -221,7 +214,30 @@ class _setLocationState extends State<setLocation> {
                     ),
                   ),
                 ),
-                SizedBox(height: 50.h),
+                SizedBox(height: 35.h),
+                Center(
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        (context),
+                        MaterialPageRoute(
+                          builder: (context) => profileImage(
+                            email: widget.email,
+                            fname: widget.fname,
+                            lname: widget.lname,
+                            password: widget.password,
+                            location: selectCountry,
+                          ),
+                        ),
+                      );
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0)),
+                    padding: const EdgeInsets.all(0.0),
+                    child: primatyButton(btnText: 'Create Account'),
+                  ),
+                ),
               ],
             ),
           )

@@ -10,11 +10,11 @@ import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class signup extends StatefulWidget {
-  final VoidCallback showLoginPage;
-  const signup({
-    Key? key,
-    required this.showLoginPage,
-  }) : super(key: key);
+  // final VoidCallback showLoginPage;
+  // const signup({
+  //   Key? key,
+  //   required this.showLoginPage,
+  // }) : super(key: key);
 
   @override
   State<signup> createState() => _signupState();
@@ -314,7 +314,9 @@ class _signupState extends State<signup> {
                           ),
                           SizedBox(height: 20.h),
                           GestureDetector(
-                            onTap: widget.showLoginPage,
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
                             child: Text(
                               'Alredy have an account?',
                               style: TextStyle(

@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/auth.config.dart';
-import 'package:food_app/screens/resetPassword.dart';
+import 'package:food_app/screens/addpassword.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -52,13 +52,14 @@ class _verificationState extends State<verification> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const resetPassword(),
+          builder: (context) => addPassword(getEmail: widget.getCode),
         ),
       );
     } else {
       Fluttertoast.showToast(
-          msg: 'Invalid verification code',
-          backgroundColor: Colors.black.withOpacity(0.6));
+        msg: 'Invalid verification code',
+        backgroundColor: Colors.black.withOpacity(0.6),
+      );
     }
   }
 

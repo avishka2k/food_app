@@ -42,6 +42,7 @@ dependencies:
   csc_picker: ^0.2.6
   shared_preferences: ^2.0.15
   email_auth: ^1.0.0
+  introduction_screen: ^3.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

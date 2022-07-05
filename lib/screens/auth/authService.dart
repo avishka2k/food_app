@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:food_app/screens/auth/authPage.dart';
 import 'package:food_app/screens/introducion.dart';
 import 'package:food_app/screens/logedScreens/homePage.dart';
 

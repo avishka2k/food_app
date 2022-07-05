@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_app/screens/auth/siginwithgoogle.dart';
 import 'package:food_app/screens/emialVerify/sendemail.dart';
 import 'package:food_app/screens/forgotPassword.dart';
 import 'package:food_app/screens/signup.dart';
@@ -336,41 +337,46 @@ class _loginState extends State<login> {
                             ),
                           ),
                           SizedBox(width: 10.w),
-                          Container(
-                            width: 120.w,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey.withOpacity(0.4),
-                                  width: 0.2.w),
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 70,
-                                  offset: const Offset(2, 20),
-                                  color: HexColor('#15BE77').withOpacity(0.2),
-                                )
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    'assets/icons/google.png',
+                          GestureDetector(
+                            onTap: () {
+                              googleAuthService().signInWithGoogle();
+                            },
+                            child: Container(
+                              width: 120.w,
+                              height: 40.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.grey.withOpacity(0.4),
+                                    width: 0.2.w),
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 70,
+                                    offset: const Offset(2, 20),
+                                    color: HexColor('#15BE77').withOpacity(0.2),
+                                  )
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image(
+                                    image: const AssetImage(
+                                      'assets/icons/google.png',
+                                    ),
+                                    width: 25.w,
                                   ),
-                                  width: 25.w,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Google',
-                                  style: TextStyle(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
+                                  SizedBox(width: 8.w),
+                                  Text(
+                                    'Google',
+                                    style: TextStyle(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],

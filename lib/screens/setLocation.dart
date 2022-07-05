@@ -46,199 +46,202 @@ class _setLocationState extends State<setLocation> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 50.h,
-              horizontal: 25.w,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: HexColor('#F9A84D').withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        icon: Image.asset(
-                          'assets/icons/back.png',
-                          color: HexColor('#DA6317'),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 50.h,
+                horizontal: 25.w,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: HexColor('#F9A84D').withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        child: IconButton(
+                          icon: Image.asset(
+                            'assets/icons/back.png',
+                            color: HexColor('#DA6317'),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                    child: Text(
+                      'Set Your Location',
+                      style: TextStyle(
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: Text(
-                    'Set Your Location',
+                  ),
+                  Text(
+                    'This data will be displayed in your account\nprofile for security',
                     style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
                       color: Colors.black,
                     ),
                   ),
-                ),
-                Text(
-                  'This data will be displayed in your account\nprofile for security',
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 25.h),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 100,
-                          offset: const Offset(0, 20),
-                          color: HexColor('#15BE77').withOpacity(0.1),
-                        )
-                      ],
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
-                      child: Row(
-                        children: [
-                          countrySelected == true
-                              ? Text(
-                                  countryFlag,
-                                  style: const TextStyle(fontSize: 30),
-                                )
-                              : const Image(
-                                  image:
-                                      AssetImage('assets/icons/location.png'),
-                                ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10.w),
-                            child: Text(
-                              countrySelected == true
-                                  ? selectCountry
-                                  : 'Your Location',
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 25.h),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 100,
+                            offset: const Offset(0, 20),
+                            color: HexColor('#15BE77').withOpacity(0.1),
                           )
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 100,
-                          offset: const Offset(0, 20),
-                          color: HexColor('#15BE77').withOpacity(0.1),
-                        )
-                      ],
-                    ),
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                          minimumSize:
-                              Size(MediaQuery.of(context).size.width, 40)),
-                      onPressed: () {
-                        showCountryPicker(
-                          context: context,
-                          countryListTheme: CountryListThemeData(
-                            flagSize: 25,
-                            backgroundColor: Colors.white,
-                            textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.blueGrey,
-                            ),
-                            bottomSheetHeight: 500,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0),
-                            ),
-                            inputDecoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    width: 0.2.w,
-                                    color: Colors.grey.withOpacity(0.5),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5.h, horizontal: 10.w),
+                        child: Row(
+                          children: [
+                            countrySelected == true
+                                ? Text(
+                                    countryFlag,
+                                    style: const TextStyle(fontSize: 30),
+                                  )
+                                : const Image(
+                                    image:
+                                        AssetImage('assets/icons/location.png'),
                                   ),
-                                  borderRadius: BorderRadius.circular(15)),
-                              hintText: 'Start typing to search',
-                              labelText: 'Search',
-                              labelStyle: const TextStyle(
-                                color: Colors.grey,
+                            Padding(
+                              padding: EdgeInsets.only(left: 10.w),
+                              child: Text(
+                                countrySelected == true
+                                    ? selectCountry
+                                    : 'Your Location',
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: HexColor('#15BE77'),
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)),
-                            ),
-                          ),
-                          showPhoneCode: true,
-                          onSelect: (Country country) {
-                            setState(() {
-                              selectCountry = country.displayNameNoCountryCode;
-                              countryFlag = country.flagEmoji.toString();
-                              countrySelected = true;
-                            });
-                          },
-                        );
-                      },
-                      child: Text(
-                        'Set Location',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                            )
+                          ],
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 35.h),
-                Center(
-                  // ignore: deprecated_member_use
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        (context),
-                        MaterialPageRoute(
-                          builder: (context) => profileImage(
-                            email: widget.email,
-                            fname: widget.fname,
-                            lname: widget.lname,
-                            password: widget.password,
-                            location: selectCountry,
+                  Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 100,
+                            offset: const Offset(0, 20),
+                            color: HexColor('#15BE77').withOpacity(0.1),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            minimumSize:
+                                Size(MediaQuery.of(context).size.width, 40)),
+                        onPressed: () {
+                          showCountryPicker(
+                            context: context,
+                            countryListTheme: CountryListThemeData(
+                              flagSize: 25,
+                              backgroundColor: Colors.white,
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.blueGrey,
+                              ),
+                              bottomSheetHeight: 500,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                              ),
+                              inputDecoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      width: 0.2.w,
+                                      color: Colors.grey.withOpacity(0.5),
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)),
+                                hintText: 'Start typing to search',
+                                labelText: 'Search',
+                                labelStyle: const TextStyle(
+                                  color: Colors.grey,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: HexColor('#15BE77'),
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)),
+                              ),
+                            ),
+                            showPhoneCode: true,
+                            onSelect: (Country country) {
+                              setState(() {
+                                selectCountry =
+                                    country.displayNameNoCountryCode;
+                                countryFlag = country.flagEmoji.toString();
+                                countrySelected = true;
+                              });
+                            },
+                          );
+                        },
+                        child: Text(
+                          'Set Location',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
                           ),
                         ),
-                      );
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    padding: const EdgeInsets.all(0.0),
-                    child: primatyButton(btnText: 'Create Account'),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 35.h),
+                  Center(
+                    // ignore: deprecated_member_use
+                    child: RaisedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          (context),
+                          MaterialPageRoute(
+                            builder: (context) => profileImage(
+                              email: widget.email,
+                              fname: widget.fname,
+                              lname: widget.lname,
+                              password: widget.password,
+                              location: selectCountry,
+                            ),
+                          ),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)),
+                      padding: const EdgeInsets.all(0.0),
+                      child: primatyButton(btnText: 'Next'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],

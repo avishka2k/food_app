@@ -55,17 +55,6 @@ class forgotPassword extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
                 Text(
                   'Please Enter Your Email Address To \nRecieve a Verification Code.',
                   style: TextStyle(

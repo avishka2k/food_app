@@ -23,46 +23,13 @@ class _EventDetialsPageState extends State<EventDetialsPage> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   bool isLoading = true;
-  String title = '';
-  String about = '';
-  String date = '';
-  String location = '';
-  String eventDate = '';
-  String imageUrl = '';
-  String formattedDate = '';
-  String startTime = '';
-  String endTime = '';
+
 
   @override
   void initState() {
     fetchModulesData();
     super.initState();
   }
-
-//   Future<void> fetchModulesData() async {
-//     try {
-//       final remindCollection = await firestoreInstance
-//           .collection("events")
-//           .doc(widget.eventId)
-//           .get();
-
-//       setState(() {
-//         title = remindCollection.get("title");
-//         about = remindCollection.get("about");
-//         location = remindCollection.get("location");
-//         imageUrl = remindCollection.get("imageUrl");
-//         DateTime timeStart = remindCollection.get("timeStart").toDate();
-//         DateTime timeEnd = remindCollection.get("timeEnd").toDate();
-//         eventDate = DateFormat('E, MMM d, y').format(timeStart);
-//         startTime = DateFormat('h:mm a').format(timeStart);
-//         endTime = DateFormat('h:mm a').format(timeEnd);
-//         isLoading = false;
-//       });
-//     } catch (e) {
-//       AppToastmsg.appToastMeassage('Error fetching modules data!');
-//       print(e);
-//     }
-//   }
 
   @override
   Widget build(BuildContext context) {

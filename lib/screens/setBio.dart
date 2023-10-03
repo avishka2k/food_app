@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/widget/primarybtn.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:food_app/widget/appbar.dart'
 
 class setBio extends StatefulWidget {
   const setBio({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _setBioState extends State<setBio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppBarWithBack(title: 'Edit Profile'),
       body: Stack(
         children: [
           Transform.translate(
